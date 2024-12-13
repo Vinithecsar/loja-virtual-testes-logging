@@ -1,29 +1,30 @@
 package com.virtual.loja.repository.inmemory;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.virtual.loja.model.Catalogo;
 import com.virtual.loja.model.Produto;
 import com.virtual.loja.repository.CatalogoRepository;
 
 public class InMemoryCatalogoRepository implements CatalogoRepository {
-  private final List<Produto> produtos = new ArrayList<>();
+  private final Catalogo catalogo;
 
-  @Override
-  public void adicionarProduto(Produto produto) {
-    produtos.add(produto);
+  public InMemoryCatalogoRepository() {
+    this.catalogo = new Catalogo();
   }
 
   @Override
-  public List<Produto> listarProdutos() {
-    return new ArrayList<>(produtos);
+  public boolean adicionarProduto(Produto produto) throws IllegalArgumentException {
+    return catalogo.adicionarProduto(produto);
   }
 
   @Override
   public Produto buscarProdutoPorId(int id) throws IllegalArgumentException {
-    return produtos.stream()
-        .filter(produto -> produto.getId() == id)
-        .findFirst()
-        .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado"));
+    return catalogo.buscarProdutoPorId(id);
+  }
+
+  @Override
+  public List<Produto> listarProdutos() {
+    return catalogo.listarProdutos();
   }
 }

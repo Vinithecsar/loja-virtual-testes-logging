@@ -1,14 +1,12 @@
 package com.virtual.loja.repository;
 
-import com.virtual.loja.model.Produto;
+import com.virtual.loja.model.Pedido;
+import java.util.List;
 
 public interface PedidoRepository {
+  boolean salvarPedido(Pedido pedido) throws IllegalArgumentException;
 
-  void adicionarProduto(Produto produto);
+  Pedido buscarPedidoPorCliente(String cliente) throws IllegalArgumentException;
 
-  float calcularTotal();
-
-  String getCliente();
-
-  void setCliente(String cliente);
+  List<Pedido> listarPedidos();
 }

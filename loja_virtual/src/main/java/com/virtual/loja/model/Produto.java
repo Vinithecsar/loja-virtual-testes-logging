@@ -10,7 +10,7 @@ public class Produto {
   private String nome;
   private float preco;
 
-  Produto(String nome, float preco) {
+  public Produto(String nome, float preco) {
     this.id = UniqueIdGenerator.generateId();
     this.nome = nome;
     this.preco = preco;

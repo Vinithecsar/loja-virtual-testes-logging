@@ -5,9 +5,9 @@ import java.util.List;
 import com.virtual.loja.model.Produto;
 
 public interface CatalogoRepository {
-  void adicionarProduto(Produto produto);
+  boolean adicionarProduto(Produto produto) throws IllegalArgumentException;
+
+  Produto buscarProdutoPorId(int id) throws IllegalArgumentException;
 
   List<Produto> listarProdutos();
-
-  Produto buscarProdutoPorId(int id);
 }

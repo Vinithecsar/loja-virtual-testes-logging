@@ -1,41 +1,39 @@
 package com.virtual.loja.repository.inmemory;
 
+import com.virtual.loja.model.Pedido;
+import com.virtual.loja.repository.PedidoRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.virtual.loja.model.Produto;
-import com.virtual.loja.repository.PedidoRepository;
-
 public class InMemoryPedidoRepository implements PedidoRepository {
-  private final List<Produto> produtos = new ArrayList<>();
-  private String cliente;
+  private final List<Pedido> pedidos;
 
-  @Override
-  public void adicionarProduto(Produto produto) {
-    produtos.add(produto);
+  public InMemoryPedidoRepository() {
+    this.pedidos = new ArrayList<>();
   }
 
   @Override
-  public float calcularTotal() {
-    float valorTotal = 0;
+  public boolean salvarPedido(Pedido pedido) throws IllegalArgumentException {
+    boolean clienteJaExiste = pedidos.stream()
+        .anyMatch(p -> p.getCliente().equalsIgnoreCase(pedido.getCliente()));
 
-    for (Produto p : produtos) {
-      valorTotal += p.getPreco();
+    if (clienteJaExiste) {
+      throw new IllegalArgumentException("Já existe um pedido associado ao cliente: " + pedido.getCliente());
     }
 
-    if (valorTotal >= 100.00) {
-      valorTotal = valorTotal * 0.9f;
-    }
-    return valorTotal;
+    return pedidos.add(pedido);
   }
 
   @Override
-  public String getCliente() {
-    return cliente;
+  public Pedido buscarPedidoPorCliente(String cliente) throws IllegalArgumentException {
+    return pedidos.stream()
+        .filter(pedido -> pedido.getCliente().equals(cliente))
+        .findFirst()
+        .orElseThrow(() -> new IllegalArgumentException("Pedido do cliente " + cliente + " não encontrado"));
   }
 
   @Override
-  public void setCliente(String cliente) {
-    this.cliente = cliente;
+  public List<Pedido> listarPedidos() {
+    return new ArrayList<>(pedidos);
   }
 }
