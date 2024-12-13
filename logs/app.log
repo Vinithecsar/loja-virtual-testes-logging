@@ -1,6 +1,0 @@
-2024-12-10 14:37:27.522 [main] TRACE com.virtual.loja.Main - Trace - Entering method processOrder().
-2024-12-10 14:37:27.528 [main] DEBUG com.virtual.loja.Main - Debug - Received order with ID 12345.
-2024-12-10 14:37:27.529 [main] INFO  com.virtual.loja.Main - Info - Order shipped successfully.
-2024-12-10 14:37:27.529 [main] WARN  com.virtual.loja.Main - Warn - Potential security vulnerability detected in user input: '...'
-2024-12-10 14:37:27.529 [main] ERROR com.virtual.loja.Main - Error - Failed to process order. Error: {. . .}
-2024-12-10 14:37:27.530 [main] FATAL com.virtual.loja.Main - Fatal - System crashed. Shutting down...
