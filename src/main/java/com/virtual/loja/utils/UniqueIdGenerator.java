@@ -15,6 +15,10 @@ public class UniqueIdGenerator {
     return contador;
   }
 
+  public static void reset() {
+    counter.set(0);
+  }
+
   private UniqueIdGenerator() {
   }
 }

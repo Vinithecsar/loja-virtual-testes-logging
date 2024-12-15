@@ -18,13 +18,6 @@ public class Main {
     protected static final Logger logger = LogManager.getLogger();
 
     public static void main(String[] args) {
-        // logger.trace("Trace - Entering method processOrder().");
-        // logger.debug("Debug - Received order with ID 12345.");
-        // logger.info("Info - Order shipped successfully.");
-        // logger.warn("Warn - Potential security vulnerability detected in user input:
-        // '...'");
-        // logger.error("Error - Failed to process order. Error: {. . .}");
-        // logger.fatal("Fatal - System crashed. Shutting down...");
 
         CatalogoRepository catalogoRepository = new InMemoryCatalogoRepository();
         PedidoRepository pedidoRepository = new InMemoryPedidoRepository();
@@ -33,6 +26,7 @@ public class Main {
         PedidoService pedidoService = new PedidoService(pedidoRepository);
         ProdutoService produtoService = new ProdutoService();
 
+        // Métodos de produtoService
         Produto produto1 = produtoService.criarProduto("Produto A", 50f);
         Produto produto2 = produtoService.criarProduto("Produto B", 75f);
 
